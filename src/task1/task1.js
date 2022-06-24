@@ -1,5 +1,7 @@
 function forLoop(){
-   let i = "#\n##\n###\n####\n#####\n######\n#######\n";
-   console.log(i);
-}
+   var n = "\n";
+   for(var hash = "#"; hash.length <= 6; hash = hash +"#"){
+console.log(hash + n);
+   }   
+   }
 forLoop();
