@@ -1,4 +1,4 @@
 function min(x,y){
-    (x>y)? console.log (y):console.log (x)
+    return (x>y)?  y :  x;
 };
-min(10,6);
+console.log(min(-10,6));
