@@ -1,5 +1,6 @@
-function isEven(x) {
-    return ( x & 1 ) ? false : true;
-  }
+function isEven (N) {
+  N = Math.abs(N);
+return (N<2) ?  N !== 0 : isEven (N - 2);
+}
  
 
