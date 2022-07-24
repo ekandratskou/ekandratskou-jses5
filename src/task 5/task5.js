@@ -10,3 +10,7 @@ function range(start, end, step){
     return result;
 }
 
+function sum(){
+     var result = arr.reduce((x, y) => x + y);
+     return result;
+}  
