@@ -11,15 +11,10 @@
 
 
 function reverseArrayInPlace(arr){
-  for (var i=0; i< arr.length; i++){
-    for (var j=0; j< arr.length; j++){
-      while (arr[j]<arr[j+1]) {
-        var count=arr[j];
-        arr[j]=arr[j+1];
-        arr[j+1]=count;
-      }
-    }
+    for ( i =0; i < Math.floor( arr.length / 2 ) ; i++ ) {
+  	var count = arr[i];
+    var check = (arr.length-1)-i;
+    arr[i] = arr[check];
+    arr[check] = count;
   }
-  return arr;
 }
-
