@@ -1,12 +1,10 @@
-function arrayToList(arr) {
-  var list = {};
-  for(var i = 0; i <= arr.length; i++ ){
-      list.value = arr.splice(0,1)[0];
-      list.rest = (arr.length>0) ? arrayToList(arr) : null;
-  }
-     return list;
+function arrayToList(arr){ 
+    var list = null; 
+    for (var i=arr.length-1; i>=0; i--){
+        list = {value: arr[i], rest:list}; 
+    }
+    return list; 
 }
-
 
 function listToArray(list) {
     let arr = [];
@@ -18,8 +16,8 @@ function listToArray(list) {
 
 
 function prepend( elem, list_old) {
-    var list_new = {value: elem, rest: list_old};
-    return list_new;
+    return {value: elem, rest: list_old};
+     
 }
 
 
