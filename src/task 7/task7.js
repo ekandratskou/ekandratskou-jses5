@@ -7,7 +7,7 @@ function arrayToList(arr){
 }
 
 function listToArray(list) {
-    let arr = [];
+    var arr = [];
     for(list; list !== null; list = list.rest) {
       arr.push(list.value);
     }
