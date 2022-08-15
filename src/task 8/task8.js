@@ -7,11 +7,10 @@ function deepEqual(val_1, val_2) {
      }  
                  
    for (var prop in val_1) {
-    if (val_2.hasOwnProperty(prop)) {
-        if (! deepEqual(val_1[prop], val_2[prop]) )
-            return false; 
-    } else {
+    if (val_2.hasOwnProperty(prop) && ! deepEqual(val_1[prop], val_2[prop])) {
         return false; 
+    } else {
+        return true; 
     }
    }
 return true;
