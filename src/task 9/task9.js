@@ -3,4 +3,4 @@ function flatter(arr){
         return x.concat(y);
     }, []);
     return result;
-}
+};
