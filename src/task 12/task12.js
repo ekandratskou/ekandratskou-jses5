@@ -1,15 +1,7 @@
 function some(arr, arg){
-    for(i=0; i<arr.length; i++){
-        while(arg(arr[i])){
-            return true;
-        }
-    }return false;
+    return arr.some((item) => arg(item));
 }
 
 function every(arr, arg){
-    for(i=0; i<arr.length; i++){
-        while(!arg(arr[i])){
-            return false;
-        }
-    }return true;
+   return arr.every((item) => arg(item));
 }
