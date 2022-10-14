@@ -1,6 +1,6 @@
 function some(arr, arg){
-    return !(arr.filter(function(num){return !arg(num)}).length === Object.keys(arr).length);
+    return arr.filter(arg).length >0 ? true : false;
 }
 function every(arr, arg){
-   return arr.filter(function(num){return arg(num)}).length === Object.keys(arr).length;
+   return arr.filter(arg).length === Object.keys(arr).length;
 }
