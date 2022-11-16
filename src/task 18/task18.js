@@ -1,12 +1,12 @@
-verify(/car|cat/,
+verify(/ca[rt]/,
        ["my car", "bad cats"],
        ["camper", "high art"]);
 
-verify(/pop|prop/,
+verify(/pr?op/,
        ["pop culture", "mad props"],
        ["plop"]);
 
-verify(/ferret|ferrari|ferry/,
+verify(/ferr[et|ari|y]/,
        ["ferret", "ferry", "ferrari"],
        ["ferrum", "transfer A"]);
 
@@ -14,7 +14,7 @@ verify(/ious\b/,
        ["how delicious", "spacious room"],
        ["ruinous", "consciousness"]);
 
-verify(/\s\.|\:|\;/,
+verify(/\s[.,:;]/,
        ["bad punctuation ."],
        ["escape the dot"]);
 
