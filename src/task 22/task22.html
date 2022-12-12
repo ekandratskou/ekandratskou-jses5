@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            table{
+                border-collapse: collapse;
+            }
+            td,th {
+                padding: 3px 8px;
+                border: 1px solid black;
+            }
+            th{
+                text-align: left;
+            }
+        </style>
+    </head>
+    <body>
+        <div id = "table"></div>
+        <script>
+            var Table = document.querySelector("#table");
+            var MOUNTAINS = [
+                {name: "Kilimanjaro", height: 5895, country: "Tanzania"},
+                {name: "Everest", height: 8848, country: "Nepal"},
+                {name: "Mount Fuji", height: 3776, country: "Japan"},
+                {name: "Mont Blanc", height: 4808, country: "Italy/France"},
+                {name: "Vaalserberg", height: 323, country: "Netherlands"},
+                {name: "Denali", height: 6168, country: "United States"},
+                {name: "Popocatepetl", height: 5465, country: "Mexico"}
+            ];
+            var headers = Object.keys(MOUNTAINS[0]);
+            function buildTable(){
+                var table =document.createElement("table");
+                var headerRow = document.createElement("tr");
+                headers.forEach(function (headerText){
+                    var header = document.createElement("th");
+                    header.textContent = headerText;
+                    headerRow.appendChild(header);
+                });
+                table.appendChild(headerRow);
+        MOUNTAINS.forEach(function(X){
+            var row =document.createElement("tr")
+            Object.values(X).forEach(function(text){
+                var cell = document.createElement("td");
+                if(typeof text == "number"){
+                    cell.style.textAlign = "right"
+                }
+                cell.textContent= text;
+                row.appendChild(cell);
+            })
+            table.appendChild(row);
+        })
+        Table.appendChild(table);
+    }
+    document.body.appendChild(buildTable(MOUNTAINS))
+        </script>
+    </body>
+</html>
+
