@@ -1,17 +1,11 @@
 function buildTable(arr){
     var Table = document.querySelector("#table");
-    var rez = arr.map(elem => (Object.keys(elem)));
-    var result = rez.flat();
-    function unique(arr) {
-        var res = [];
-      for (let str of arr) {
-    if (!res.includes(str)) {
-      res.push(str);
-    }
-  }
-        return res;
-};
-    var headers = unique(result);
+    var result = [];
+    arr.forEach(function(elem){
+        result.push(Object.keys(elem))
+    });
+    var uniq = new Set(result.flat());
+    var headers = Array.from(uniq);
     var table = document.createElement("table");
     var headerRow = document.createElement("tr");
     headers.forEach(function (headerText){
