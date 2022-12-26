@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="task22.js"></script>
+        <script src="../../ext/mountains.js"></script>
+        <style>
+            table{
+                border-collapse: collapse;
+            }
+            td,th {
+                padding: 3px 8px;
+                border: 1px solid black;
+            }
+            th{
+                text-align: left;
+            }
+        </style>
+    </head>
+    <body>
+        <div id = "table"></div>
+        <script>
+            document.body.appendChild(buildTable(MOUNTAINS));
+        </script>
+    </body>
+</html>
+
