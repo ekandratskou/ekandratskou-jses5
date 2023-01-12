@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="animation.js"></script>
+    </head>
+    <body>
+      <p>
+          <img src="img/cat.png" id="cat" style="position: absolute">
+          <img src="img/hat.png" id="hat" style="position: absolute">
+        </p>
+        <script>
+            var cat = document.querySelector("#cat");
+            var hat = document.querySelector("#hat");
+             animate({
+                 duration: 1000,
+                 timing: function(timeFraction) {
+                     return Math.pow(timeFraction, 2);
+                 },
+                 draw: function(arg) {
+                     cat.style.top = (Math.sin(arg) * 400 + 400) + "px";
+                     cat.style.left = (Math.cos(arg) * 400 + 400) + "px";
+                     hat.style.left = (Math.sin(arg) * 300 / Math.PI + 400) + "px";
+                     hat.style.top = (Math.cos(arg) * 90 * Math.PI + 400) + "px";
+                 }
+             });
+        </script>
+    </body>
+</html>
