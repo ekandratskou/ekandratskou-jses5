@@ -1,20 +1,24 @@
-    var activeTab;
-    var currentBody;
-        function switchTab(event) {
-            activeTab.classList.remove("selected");
-            activeTab = event.target;
-            activeTab.classList.add("selected");
-            var tabContent = document.querySelectorAll("div");
-            
-            currentBody.classList.toggle("hidden");
-            if(activeTab.textContent == "one")
-                currentBody = tabContent[0];
-            if(activeTab.textContent == "two")
-                currentBody = tabContent[1];
-            if(activeTab.textContent == "three")
-                currentBody = tabContent[2];
-            currentBody.classList.toggle("hidden");
+   var activeTab;
+var currentBody;
+var arr = document.querySelector("wrapper");
+var Predata = Array.from(arr.children);
+const data = Object.assign({},Predata); // либо const data = {...Predata};
+
+function switchTab(event) {
+    activeTab.classList.remove("selected");
+    activeTab = event.target;
+    activeTab.classList.add("selected");
+    var tabContent = document.querySelector("wrapper");
+    currentBody.classList.toggle("hidden");
+    var arg = activeTab.textContent;
+    for(key in data){
+        if(arg == key){
+            currentBody = data[key];
         }
+    }
+    
+    currentBody.classList.toggle("hidden");
+}
       
         function asTabs(node) {
             var tabLength = node.children.length;
