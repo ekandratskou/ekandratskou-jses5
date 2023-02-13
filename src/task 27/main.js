@@ -1,44 +1,54 @@
-   var activeTab;
-var currentBody;
-var arr = document.querySelector("wrapper");
-var Predata = Array.from(arr.children);
-const data = Object.assign({},Predata); // либо const data = {...Predata};
+   var selectedBut;
+var newDiv = document.createElement("div");
+var dive = document.querySelector("wrapper");
+document.body.onload = addButton;
 
-function switchTab(event) {
-    activeTab.classList.remove("selected");
-    activeTab = event.target;
-    activeTab.classList.add("selected");
-    var tabContent = document.querySelector("wrapper");
-    currentBody.classList.toggle("hidden");
-    var arg = activeTab.textContent;
-    for(key in data){
-        if(arg == key){
-            currentBody = data[key];
-        }
+var data = [{
+    tabName: "Home",
+    tabContent: "Application landing page"
+},{
+    tabName: "About",
+    tabContent: "Some info about using the Application"
+},{
+    tabName: "Resources",
+    tabContent: "Some additional links and resourses available"
+},];
+
+function addButton() {
+    // Создаём новый элемент div
+    for(var key in data){
+        var predate = data[key]; //console.log(data[key].tabName)
+        var tabButton = document.createElement("button");
+    // Добавляем только что созданный элемент в дерево DOM
+        dive.prepend(tabButton);
+        tabButton.innerHTML = predate.tabName;
+        tabButton.setAttribute('data-tabname', predate.tabName); 
     }
-    
-    currentBody.classList.toggle("hidden");
 }
-      
-        function asTabs(node) {
-            var tabLength = node.children.length;
-        
-            for (var i = 0; i < tabLength; i++) {
-                var tabButton = document.createElement("button");
-          
-                tabButton.textContent = document.querySelectorAll("div")[i].getAttribute("data-tabname");
-                node.querySelectorAll("div")[i].classList.add("hidden");
-                tabButton.addEventListener("click", switchTab);
-                node.insertBefore(tabButton, document.querySelector("div"));
-            }
+     
+function addContent(elem) {
+    dive.append(newDiv);
+    newDiv.innerHTML = data[elem].tabContent; 
+}
 
-            
-            activeTab = document.querySelector("button");
-            activeTab.classList.add("selected");
+function highlight(button) {
+    if (selectedBut) { // убрать существующую подсветку, если есть
+      selectedBut.classList.remove("selected");
+    };
+    selectedBut = button;
+    selectedBut.classList.add("selected"); // подсветить новый button
+};
 
-            currentBody = document.querySelector("div");
-            currentBody.classList.toggle("hidden");
-                
-        }
-      
-        asTabs(document.querySelector("wrapper"));
+dive.addEventListener("click", (function(event) {
+     for(var key in data){
+         if(event.target.textContent == data[key].tabName){
+               addContent(key);
+         };  
+     };
+}));
+
+dive.addEventListener("click", (function(event) {
+    var target = event.target; // где был клик?
+    if (target.tagName != 'BUTTON') return; // не на button? тогда нет
+    highlight(target);// подсветить button
+}));
