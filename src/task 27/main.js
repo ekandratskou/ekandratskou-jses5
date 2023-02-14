@@ -1,4 +1,4 @@
-   var selectedBut;
+var selectedBut;
 var newDiv = document.createElement("div");
 var dive = document.querySelector("wrapper");
 document.body.onload = addButton;
@@ -17,13 +17,18 @@ var data = [{
 function addButton() {
     // Создаём новый элемент div
     for(var key in data){
-        var predate = data[key]; //console.log(data[key].tabName)
+        var predate = data[key]; 
         var tabButton = document.createElement("button");
     // Добавляем только что созданный элемент в дерево DOM
         dive.prepend(tabButton);
         tabButton.innerHTML = predate.tabName;
-        tabButton.setAttribute('data-tabname', predate.tabName); 
+        tabButton.setAttribute('data-tabname', predate.tabName);
     }
+    // задаем кнопку "по умолчанию"
+    dive.firstChild.classList.add("selected");
+    // задаем контент "по умолчанию"
+    dive.append(newDiv);
+    newDiv.innerHTML = data[2].tabContent;
 }
      
 function addContent(elem) {
@@ -32,6 +37,8 @@ function addContent(elem) {
 }
 
 function highlight(button) {
+    // очищаем подсветку кнопки "по умолчанию"
+    dive.firstChild.classList.remove("selected");
     if (selectedBut) { // убрать существующую подсветку, если есть
       selectedBut.classList.remove("selected");
     };
@@ -45,10 +52,8 @@ dive.addEventListener("click", (function(event) {
                addContent(key);
          };  
      };
-}));
-
-dive.addEventListener("click", (function(event) {
     var target = event.target; // где был клик?
     if (target.tagName != 'BUTTON') return; // не на button? тогда нет
-    highlight(target);// подсветить button
+    highlight(target);
 }));
+
