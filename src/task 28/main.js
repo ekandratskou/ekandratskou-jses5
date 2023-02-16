@@ -12,7 +12,7 @@ cx.lineTo(Stx,Sty);
 cx.stroke(); 
     
 }
-trapezoid(10,70,30,60,40)
+//trapezoid(10,70,30,60,40)
 
 //weight - ширина четырехугольника, height - высота четырехугольника, angle -угол поворота координатной оси; 
 
@@ -24,7 +24,7 @@ function diamond(Stx, Sty, weight, height, angle){
     cx.fillRect(Stx, Sty, weight, height);
     cx.resetTransform();
 }
- diamond(10, 50, 100, 100, 45)
+ //diamond(10, 50, 100, 100, 45)
 
 //w - ширина зигзагообразной области, h - высота зигзагообразной области, Hz - частота элементов зигзагообразной области;
 function zigzaggingLine(Stx, Sty, w, h, Hz){
@@ -49,7 +49,7 @@ function spiral(Stx, Sty, a, b, p){
     cx.stroke()
 }
 
-spiral(110,110,15,4,1);
+//spiral(110,110,15,4,1);
 
 
 function star(Stx, Sty, col){
@@ -68,7 +68,7 @@ function star(Stx, Sty, col){
         cx.stroke();
     }
 }
-star(60,50, "yellow")
+//star(60,50, "yellow")
  
 
 
