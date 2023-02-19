@@ -12,19 +12,20 @@ cx.lineTo(Stx,Sty);
 cx.stroke(); 
     
 }
-//trapezoid(10,70,30,60,40)
+//trapezoid(50,70,30,60,30)
+//trapezoid(150,70,30,60,30)
 
 //weight - ширина четырехугольника, height - высота четырехугольника, angle -угол поворота координатной оси; 
 
 function diamond(Stx, Sty, weight, height, angle){
-    cx.translate(Stx + 100, Sty+10)
-    cx.moveTo(Stx, Sty);
+    cx.translate(Stx + weight, Sty + weight/3)
     cx.rotate(angle * Math.PI / 180);
     cx.fillStyle = "red";
-    cx.fillRect(Stx, Sty, weight, height);
+    cx.fillRect(-weight/2, -height/2, weight, height);
     cx.resetTransform();
 }
  //diamond(10, 50, 100, 100, 45)
+//diamond(10, 500, 100, 100, 45)
 
 //w - ширина зигзагообразной области, h - высота зигзагообразной области, Hz - частота элементов зигзагообразной области;
 function zigzaggingLine(Stx, Sty, w, h, Hz){
@@ -36,7 +37,8 @@ function zigzaggingLine(Stx, Sty, w, h, Hz){
     }
     cx.stroke();
 }
-//zigzaggingLine(30, 200, 70, 100, 10);
+//zigzaggingLine(150, 150, 70, 100, 15);
+//zigzaggingLine(50, 150, 70, 100, 15);
 
 //a, b - начальные параметры спирали(начальный радиус и расстояние м/ду витками спирали , ang - угол отклонения спирали, ф-ла спирали Архимеда (X(Y)=(a+bs)cos(s))
 function spiral(Stx, Sty, a, b, p){
@@ -49,28 +51,43 @@ function spiral(Stx, Sty, a, b, p){
     cx.stroke()
 }
 
-//spiral(110,110,15,4,1);
+//spiral(150,150,10,2,0.9);
+//spiral(50,150,10,2,0.9);
 
-
-function star(Stx, Sty, col){
+// R -радиус звезды; col - цвет тела звезды, colB - цвет контура;
+function star(Stx, Sty, R, colB, col) {
     cx.beginPath();
-    for(i=0; i<360; i=i+45){
-        cx.translate(Stx, Sty);
-        cx.rotate((Math.PI / 180) * i);
-        cx.translate(-Stx, -Sty);
-        cx.moveTo(10, 90);
-        cx.quadraticCurveTo(Stx, Sty, 100, 100);
-        cx.lineTo(Stx, Sty);
-        cx.strokeStyle = col;
+    cx.translate(50, 100)
+    cx.moveTo(Stx, Sty);
+    
+    for (let i = 1; i <= 9; i++) {
+        var x = Stx + Math.cos(i * Math.PI / 4) * R;
+        var y = Sty + Math.sin(i * Math.PI / 4) * R;
+      cx.quadraticCurveTo(Stx, Sty, x, y);
+    };
+    cx.strokeStyle = colB;
+    cx.fillStyle = col;
+    cx.stroke();
+    cx.fill();
+};
+  //star(340, 0, 60, "gold", "yellow");
+  //star(440, 20, 30, "gold", "green");
+
+// n - количество лепестков, Rpet - толщина лепестков; 
+function petals(Stx, Sty, n, col, Rpet){
+    cx.beginPath();
+    cx.translate(Stx, Sty);
+    for (var i = 0; i <n; i++) {
+        cx.rotate(Math.PI/(n/2));
+        cx.moveTo(0, 0);
+        cx.arc(30, 70, Rpet, -0.5, Math.PI);
+        cx.lineTo(0, 0);
         cx.fillStyle = col;
         cx.fill();
-        cx.closePath();
-        cx.stroke();
-    }
-}
-//star(60,50, "yellow")
- 
+    };
+    cx.stroke();
+    cx.closePath();
+};
 
-
-
-
+//petals(150, 150, 12, "yellow", 20)
+//petals(250, 250, 6, "yellow", 20)
