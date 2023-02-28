@@ -19,15 +19,21 @@ animation({Sp: 10000,
              return timeFraction;
          },
          draw: function(step) {
+             cx.beginPath();
              cx.clearRect(0, 0, 400, 400);
              cx.strokeStyle = "green";
              cx.lineWidth = 2;
              cx.strokeRect(25, 25, 350, 350);
+             cx.beginPath();
+             cx.moveTo(188, 25);
+             cx.lineTo(188, 200);
+             cx.strokeStyle = "red";
+             cx.stroke(); 
              StX += step * Vx;
              StY += step * Vy;
-             if (StX < 25 + R || StX > 375 - R)
+             if (StX < 25 + R || StX > 375 - R || StX > 188 - R && StY < 220 - R && StX < 188 + R)
                  Vx = -Vx;
-             if (StY < 25 + R || StY > 375 - R)
+             if (StY < 25 + R || StY > 375 - R )
                  Vy = -Vy;
              cx.fillStyle = "yellow";
              cx.beginPath();
