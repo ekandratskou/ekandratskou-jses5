@@ -4,15 +4,11 @@ var pre = document.getElementById("output")
 
 
 function workbench(){
-    return new Promise(function(success, fail) {
+    return new Promise(function(success) {
         var func = new Function(tArea.value);
         var result = func();
-        if(result){
-            success(result);
-        }else fail();
-    })
-        .then(function(result){pre.textContent = String(result);})
-        .catch(function(err){pre.textContent = String(err);})  
+        success(pre.textContent = String(result));
+       }).catch(function(err){pre.textContent = "Error: " + err;})  
 };
 
 butt.addEventListener("click", workbench)
