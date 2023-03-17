@@ -1,24 +1,19 @@
-var tArea = document.createElement('textarea');
-tArea.value = 'return "Hi"';
-tArea.id = "code";
-document.body.append(tArea);
-var butt = document.createElement('button');
-butt.innerHTML = 'Go';
-butt.id = "button"
-document.body.append(butt);
-var pre = document.createElement('pre');
-pre.id = "output";
-document.body.append(pre);
+var butt = document.getElementById("button");
+var tArea = document.getElementById("code");
+var pre = document.getElementById("output")
 
-butt.addEventListener("click", function(){
-    var JS = tArea.value;
-    var out = document.getElementById("output");
-    try{
-    var func = new Function(JS);
-    var result = func();
-    out.textContent = String(result);
-    } catch(err){
-        out.textContent = String(err);
-    }
-});
+
+function workbench(){
+    return new Promise(function(success, fail) {
+        var func = new Function(tArea.value);
+        var result = func();
+        if(result){
+            success(result);
+        }else fail();
+    })
+        .then(function(result){pre.textContent = String(result);})
+        .catch(function(err){pre.textContent = String(err);})  
+};
+
+butt.addEventListener("click", workbench)
 
